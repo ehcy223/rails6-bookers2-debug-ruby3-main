@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @books = Book.where.not(id: @book.id)
   end
 
   def index
