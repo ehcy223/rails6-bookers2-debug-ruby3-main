@@ -1,0 +1,16 @@
+2>投稿一覧</h2>
+
+<% @post_images.each do |post_image| %>
+  <div>
+    <p><%= post_image.user.name %>さんの投稿</p>
+    <%= image_tag post_image.image, width: 200 if post_image.image.attached? %>
+    <p><%= post_image.caption %></p>
+
+    <% if post_image.favorited_by?(current_user) %>
+      <%= link_to 'いいねを外す', post_image_favorite_path(post_image), method: :delete %>
+    <% else %>
+      <%= link_to 'いいね', post_image_favorite_path(post_image), method: :post %>
+    <% end %>
+    <p>いいね数：<%= post_image.favorites.count %></p>
+  </div>
+<% end %>

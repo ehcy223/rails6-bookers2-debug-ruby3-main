@@ -2,15 +2,14 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post_image = PostImage.find(params[:post_image_id])
-    favorite = current_user.favorites.new(post_image_id: post_image.id)
-    favorite.save
+    book = Book.find(params[:book_id])
+    current_user.favorites.create(book_id: book.id)
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    post_image = PostImage.find(params[:post_image_id])
-    favorite = current_user.favorites.find_by(post_image_id: post_image.id)
+    book = Book.find(params[:book_id])
+    favorite = current_user.favorites.find_by(book_id: book.id)
     favorite.destroy if favorite
     redirect_back(fallback_location: root_path)
   end
