@@ -25,6 +25,21 @@ class UsersController < ApplicationController
     end
   end
 
+
+  # フォローしている人たち
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings
+    render 'follow_list' 
+  end
+
+  # フォロワー
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render 'follower_list'
+  end
+
   private
 
   def user_params
