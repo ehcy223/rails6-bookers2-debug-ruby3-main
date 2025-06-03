@@ -24,6 +24,10 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
+  def favorited?(book)
+    favorites.exists?(book_id: book.id)
+  end
+  
    # フォローする
    def follow(other_user)
     return if self == other_user
