@@ -6,7 +6,9 @@ class BookCommentsController < ApplicationController
     @comment = @book.book_comments.new(book_comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to book_path(@book)
+      respond_to do |format|
+        format.js
+      end
     else
       @book_comment = BookComment.new
       @user = @book.user

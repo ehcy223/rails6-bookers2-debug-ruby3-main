@@ -1,2 +1,3 @@
 $("#favorite-button-<%= @book.id %>").html("<%= j render 'favorites/btn', book: @book %>");
 $("#favorite-count-<%= @book.id %>").text("<%= @book.favorites.count %>");
+

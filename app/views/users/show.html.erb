@@ -57,6 +57,10 @@
             </tr>
           <% end %>
         </tbody>
+        
+        <div id="comment-list">
+          <%= render 'book_comments/comments', book: @book %>
+        </div>
       </table>
   </div>
 </div>
