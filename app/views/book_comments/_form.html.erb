@@ -1,4 +1,6 @@
-<%= form_with(model: [book, BookComment.new], local: false, html: { id: "comment-form" }) do |f| %>
-  <%= f.text_area :comment, placeholder: "コメントを入力", rows: 3, cols: 60, class: "form-control mb-2" %>
-  <%= f.submit "送信", class: "btn", style: "background-color: #e0e0e0; color: #000;" %>
+<%= form_with(model: [book, BookComment.new], local: false, html: { id: "new_comment_form_#{book.id}" }) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :comment, class: "form-control" %>
+  </div>
+  <%= f.submit "送信", class: "btn-sm custom-gray-btn" %>
 <% end %>

@@ -5,11 +5,16 @@ class BookCommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = @book.book_comments.new(book_comment_params)
     @comment.user_id = current_user.id
+    @comment.book_id = @book.id
+
     if @comment.save
       respond_to do |format|
         format.js
       end
     else
+      respond_to do |format|
+        format.js  # エラー時もJSで処理できるように
+      end
       @book_comment = BookComment.new
       @user = @book.user
       render 'books/show'
